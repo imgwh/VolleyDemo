@@ -6,7 +6,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Created by thi on 2016/6/16.
+ * Created by imgwh on 2016/6/16.
  */
 public class MyApplication extends Application{
     public static RequestQueue requestQueue;
