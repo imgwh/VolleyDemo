@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 }, 0, 0, Bitmap.Config.RGB_565, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                imageView.setImageResource(R.drawable.Default);
+                imageView.setImageResource(R.drawable.defaultimg);
             }
         });
 
