@@ -73,6 +73,7 @@ public class MyApplication extends Application{
     /**
      * Cancels all the pending requests.
      */
+
     public void cancel() {
         mRequestQueue.cancelAll(TAG);
     }
