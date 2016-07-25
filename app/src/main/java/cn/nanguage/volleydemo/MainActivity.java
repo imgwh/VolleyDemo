@@ -75,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
         //RequestQueue mQueue = Volley.newRequestQueue(getApplicationContext());
+        /*
+        干货集中营图片API
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://gank.io/api/data/%E7%A6%8F%E5%88%A9/10/1", null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -86,7 +88,17 @@ public class MainActivity extends AppCompatActivity {
 
                             JSONObject imageItem = images.getJSONObject(index);
 
-                            String imageUrl = imageItem.getString("url");
+                            String imageUrl = imageItem.getString("url");*/
+        //ONE·一个图片API
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://rest.wufazhuce.com/OneForWeb/one/getHpinfo?strDate=2016-07-25", null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("TAG", response.toString());
+                        try {
+                            JSONObject images = response.getJSONObject("hpEntity");
+
+                            String imageUrl = images.getString("strThumbnailUrl");
                             loadImg(imageUrl);
                             //Log.d("TAG", imageUrl.toString());
                         } catch (JSONException e) {
@@ -96,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                imageView.setImageResource(R.drawable.defaultimg);
                 Log.e("TAG", error.getMessage(), error);
-
             }
         });
         helper.add(jsonObjectRequest);
