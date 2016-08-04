@@ -20,6 +20,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -90,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
                             String imageUrl = imageItem.getString("url");*/
         //ONE·一个图片API
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://rest.wufazhuce.com/OneForWeb/one/getHpinfo?strDate=2016-07-25", null,
+        String now = new SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(new Date(System.currentTimeMillis()));
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://rest.wufazhuce.com/OneForWeb/one/getHpinfo?strDate="+now, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
