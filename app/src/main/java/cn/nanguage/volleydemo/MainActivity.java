@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import cn.nanguage.volleydemo.MyApplication;
 
 import com.android.volley.Request;
@@ -27,6 +29,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     ImageView imageView;
+    TextView textView;
     MyApplication helper = MyApplication.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         imageView = (ImageView) findViewById(R.id.imageView);
+        textView = (TextView) findViewById(R.id.textView);
         //final ImageView imageView = (ImageView) this.findViewById(R.id.imageView);
         //1、创建请求队列
         /*RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -100,11 +104,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d("TAG", response.toString());
                         try {
-                            JSONObject images = response.getJSONObject("hpEntity");
+                            JSONObject content = response.getJSONObject("hpEntity");
 
-                            String imageUrl = images.getString("strThumbnailUrl");
+                            String imageUrl = content.getString("strThumbnailUrl");
                             loadImg(imageUrl);
+
+                            String textUrl = content.getString("strContent");
+                            loadText(textUrl);
                             //Log.d("TAG", imageUrl.toString());
+                            //Log.d("TAG", textUrl.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -143,6 +151,15 @@ public class MainActivity extends AppCompatActivity {
         helper.add(request);
     }
     private void imageError(Exception e) {
+        e.printStackTrace();
+    }
+
+
+    private void loadText(String textUrl) {
+        textView.setText(textUrl);
+    }
+
+    private void textError(Exception e) {
         e.printStackTrace();
     }
 }
